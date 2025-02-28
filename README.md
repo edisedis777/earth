@@ -1,6 +1,6 @@
 # earth
 
-# control the moon using ** W, A, S, D** keys
+# control the moon using * W,A,S,D * keys
 
 ## [Demo](https://edisedis777.github.io/earth/)
 
