@@ -1,3 +1,4 @@
+// script.js
 // Scene setup
 const scene = new THREE.Scene();
 
@@ -94,37 +95,52 @@ const pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
 pointLight.position.set(10, 10, 10);
 scene.add(pointLight);
 
-// Mouse controls for Earth
+// Touch/Mouse controls for Earth
 let isDragging = false;
-let previousMouseX = 0;
-let previousMouseY = 0;
+let previousX = 0;
+let previousY = 0;
 
-window.addEventListener("mousedown", (event) => {
+function startInteraction(event) {
   isDragging = true;
-  previousMouseX = event.clientX;
-  previousMouseY = event.clientY;
-});
+  const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+  const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+  previousX = clientX;
+  previousY = clientY;
+  event.preventDefault();
+}
 
-window.addEventListener("mousemove", (event) => {
+function moveInteraction(event) {
   if (isDragging) {
-    const deltaX = event.clientX - previousMouseX;
-    const deltaY = event.clientY - previousMouseY;
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+    const deltaX = clientX - previousX;
+    const deltaY = clientY - previousY;
     earthMesh.rotation.y += deltaX * 0.005;
     earthMesh.rotation.x += deltaY * 0.005;
     earthMesh.rotation.x = Math.max(
       Math.min(earthMesh.rotation.x, Math.PI / 2),
       -Math.PI / 2
     );
-    previousMouseX = event.clientX;
-    previousMouseY = event.clientY;
+    previousX = clientX;
+    previousY = clientY;
     atmosphereMesh.rotation.copy(earthMesh.rotation);
     cloudMesh.rotation.copy(earthMesh.rotation);
   }
-});
+}
 
-window.addEventListener("mouseup", () => {
+function endInteraction() {
   isDragging = false;
-});
+}
+
+// Mouse events
+window.addEventListener("mousedown", startInteraction);
+window.addEventListener("mousemove", moveInteraction);
+window.addEventListener("mouseup", endInteraction);
+
+// Touch events
+window.addEventListener("touchstart", startInteraction);
+window.addEventListener("touchmove", moveInteraction);
+window.addEventListener("touchend", endInteraction);
 
 window.addEventListener("wheel", (event) => {
   event.preventDefault();
@@ -133,21 +149,23 @@ window.addEventListener("wheel", (event) => {
   camera.position.z = Math.max(8, Math.min(30, camera.position.z));
 });
 
-// WASD controls for moon
-const keys = { w: false, a: false, s: false, d: false };
+// Moon controls (WASD and buttons)
+const moonControls = { up: false, left: false, down: false, right: false };
+
+// Keyboard controls (keeping WASD compatibility)
 window.addEventListener("keydown", (event) => {
   switch (event.key.toLowerCase()) {
     case "w":
-      keys.w = true;
+      moonControls.up = true;
       break;
     case "a":
-      keys.a = true;
+      moonControls.left = true;
       break;
     case "s":
-      keys.s = true;
+      moonControls.down = true;
       break;
     case "d":
-      keys.d = true;
+      moonControls.right = true;
       break;
   }
 });
@@ -155,18 +173,95 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   switch (event.key.toLowerCase()) {
     case "w":
-      keys.w = false;
+      moonControls.up = false;
       break;
     case "a":
-      keys.a = false;
+      moonControls.left = false;
       break;
     case "s":
-      keys.s = false;
+      moonControls.down = false;
       break;
     case "d":
-      keys.d = false;
+      moonControls.right = false;
       break;
   }
+});
+
+// Button controls
+const buttons = {
+  up: document.getElementById("up"),
+  down: document.getElementById("down"),
+  left: document.getElementById("left"),
+  right: document.getElementById("right"),
+};
+
+// Add preventDefault to stop touch events from interfering
+buttons.up.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moonControls.up = true;
+});
+buttons.up.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  moonControls.up = false;
+});
+buttons.up.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  moonControls.up = true;
+});
+buttons.up.addEventListener("mouseup", (e) => {
+  e.preventDefault();
+  moonControls.up = false;
+});
+
+buttons.down.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moonControls.down = true;
+});
+buttons.down.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  moonControls.down = false;
+});
+buttons.down.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  moonControls.down = true;
+});
+buttons.down.addEventListener("mouseup", (e) => {
+  e.preventDefault();
+  moonControls.down = false;
+});
+
+buttons.left.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moonControls.left = true;
+});
+buttons.left.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  moonControls.left = false;
+});
+buttons.left.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  moonControls.left = true;
+});
+buttons.left.addEventListener("mouseup", (e) => {
+  e.preventDefault();
+  moonControls.left = false;
+});
+
+buttons.right.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moonControls.right = true;
+});
+buttons.right.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  moonControls.right = false;
+});
+buttons.right.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  moonControls.right = true;
+});
+buttons.right.addEventListener("mouseup", (e) => {
+  e.preventDefault();
+  moonControls.right = false;
 });
 
 // Animation
@@ -178,12 +273,12 @@ function animate() {
   }
   cloudMesh.rotation.y += 0.002;
 
-  // Moon movement with WASD
+  // Moon movement with corrected directions
   const speed = 0.02;
-  if (keys.w) moonPhi -= speed;
-  if (keys.s) moonPhi += speed;
-  if (keys.a) moonTheta += speed;
-  if (keys.d) moonTheta -= speed;
+  if (moonControls.up) moonPhi -= speed; // Up decreases phi (moves up)
+  if (moonControls.down) moonPhi += speed; // Down increases phi (moves down)
+  if (moonControls.left) moonTheta += speed; // Left increases theta (moves left)
+  if (moonControls.right) moonTheta -= speed; // Right decreases theta (moves right)
 
   moonPhi = Math.max(0.1, Math.min(Math.PI - 0.1, moonPhi));
 
@@ -191,7 +286,6 @@ function animate() {
   moon.position.y = moonRadius * Math.cos(moonPhi);
   moon.position.z = moonRadius * Math.sin(moonPhi) * Math.sin(moonTheta);
 
-  // Rotate moon for visual effect
   moon.rotation.y += 0.01;
 
   renderer.render(scene, camera);
