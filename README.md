@@ -2,6 +2,8 @@
 
 ![Immersive 3D Earth Preview](preview.gif)
 
+![Screenshot 2025-03-01 at 12 07 07](https://github.com/user-attachments/assets/21b6600b-7334-434b-a300-48fb09ed6857)
+
 A captivating 3D visualization of Earth with an orbiting moon, built using Three.js. This project features interactive controls for both desktop and mobile devices, complete with a starfield background, atmospheric effects, and cloud layer.
 
 ## Features
