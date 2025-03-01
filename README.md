@@ -21,19 +21,20 @@ A captivating 3D visualization of Earth with an orbiting moon, built using Three
 No installation is required since Three.js is loaded via CDN.
 
 ### Usage
+
 #### Desktop:
-Drag with the mouse to rotate Earth
-Scroll to zoom in/out
-Use WASD keys to move the moon
+* Drag with the mouse to rotate Earth
+* Scroll to zoom in/out
+* Use WASD keys to move the moon
 
 #### Mobile:
-Tap and drag to rotate Earth
-Pinch to zoom
-Use the on-screen buttons (↑↓←→) to move the moon
-Check the info box at the top for controls
+* Tap and drag to rotate Earth
+* Pinch to zoom
+* Use the on-screen buttons (↑↓←→) to move the moon
+* Check the info box at the top for controls
 
 #### Project Structure
-
+'''
 immersive-3d-earth/
 ├── assets/          # Texture files (not included)
 │   ├── 3d-cute.jpg  # Earth texture
@@ -43,11 +44,11 @@ immersive-3d-earth/
 ├── script.js        # Three.js logic and controls
 ├── styles.css       # Styling for UI elements
 └── README.md        # This file
-
+'''
 #### Technologies
-Three.js (r134) - 3D rendering library
-HTML5 & CSS3 - Structure and styling
-JavaScript - Interaction logic
+* Three.js (r134) - 3D rendering library
+* HTML5 & CSS3 - Structure and styling
+* JavaScript - Interaction logic
 
 #### Contributing
 Fork the repository
@@ -58,16 +59,16 @@ Open a Pull Request
 
 
 #### Suggestions for contributions:
-Add more celestial bodies (e.g., Sun, other planets)
-Implement texture customization
-Add animation speed controls
-Enhance mobile gestures
+* Add more celestial bodies
+* Implement texture customization
+* Add animation speed controls
+* Enhance mobile controls
 
 #### License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 #### Acknowledgments
-Inspired by [3D earth visualization](https://jsdev.space/immersive-3d-earth/)
-Texture resources: NASA, Solar System Scope
+* Inspired by [3D earth visualization](https://jsdev.space/immersive-3d-earth/)
+* Texture resources: NASA, Solar System Scope
 
 Happy exploring the cosmos! 🌍🌕✨
