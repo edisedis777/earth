@@ -45,7 +45,7 @@ scene.add(starField);
 // Earth geometry and texture
 const geometry = new THREE.SphereGeometry(5, 32, 32);
 const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load("./assets/3d-cute.jpg");
+const earthTexture = textureLoader.load("./assets/3d.jpg");
 const material = new THREE.MeshStandardMaterial({ map: earthTexture });
 const earthMesh = new THREE.Mesh(geometry, material);
 scene.add(earthMesh);
