@@ -1,3 +1,4 @@
+/* styles.css */
 * {
   margin: 0;
   padding: 0;
@@ -12,4 +13,45 @@ body {
 #container {
   width: 100vw;
   height: 100vh;
+}
+
+.controls {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.horizontal {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
 }
