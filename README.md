@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
-A captivating 3D visualization of Earth with an orbiting moon, built using Three.js. This project features interactive controls for both desktop and mobile devices, complete with a starfield background, atmospheric effects, and cloud layer.
+A 3D visualization of Earth with an orbiting moon, built using Three.js. This project features interactive controls for both desktop and mobile devices, complete with a starfield background, atmospheric effects, and cloud layer.
 
 ![Immersive 3D Earth Preview](preview.gif)
 
