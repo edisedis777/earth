@@ -5,8 +5,6 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
 [![Three.js](https://img.shields.io/badge/Three.js-000?logo=threedotjs&logoColor=fff)](#)
 [![Markdown](https://img.shields.io/badge/Markdown-%23000000.svg?logo=markdown&logoColor=white)](#)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
 
 A 3D visualization of Earth with an orbiting moon, built using Three.js. This project features interactive controls for both desktop and mobile devices, complete with a starfield background, atmospheric effects, and cloud layer.
 
@@ -76,12 +74,14 @@ Open a Pull Request
 * Add animation speed controls
 * Enhance mobile controls
 
-#### License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 #### Acknowledgments
 * Inspired by [3D earth visualization](https://jsdev.space/immersive-3d-earth/)
 * Texture resources: NASA, Solar System Scope
+
+
+#### License
+Distributed under the GNU Affero General Public License v3.0 License. See `LICENSE` for more information.
 
 <div align="right">
 
